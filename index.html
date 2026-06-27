@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azure Static Web App — Deployed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Parallax Sky + Landscape -->
+  <div class="scene" id="scene">
+    <div class="sky-gradient" id="skyGradient"></div>
+
+    <!-- Sun -->
+    <div class="sun" id="sun"></div>
+
+    <!-- Birds -->
+    <div class="birds" id="birds">
+      <span class="bird b1"></span>
+      <span class="bird b2"></span>
+      <span class="bird b3"></span>
+      <span class="bird b4"></span>
+      <span class="bird b5"></span>
+    </div>
+
+    <!-- Mountain layers -->
+    <div class="mountain-layer layer-far" id="layerFar">
+      <svg viewBox="0 0 1440 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,300 L0,180 Q60,120 120,150 Q200,90 280,110 Q360,60 440,90 Q520,40 600,70 Q680,20 760,50 Q840,10 920,40 Q1000,70 1080,50 Q1160,20 1240,60 Q1320,90 1380,70 L1440,80 L1440,300 Z" fill="#2d4a2d"/>
+      </svg>
+    </div>
+
+    <div class="mountain-layer layer-mid" id="layerMid">
+      <svg viewBox="0 0 1440 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,300 L0,220 Q80,160 160,190 Q240,130 340,160 Q420,100 520,140 Q620,80 720,120 Q820,60 920,100 Q1000,130 1100,100 Q1200,70 1300,110 L1440,130 L1440,300 Z" fill="#3d6b3d"/>
+      </svg>
+    </div>
+
+    <div class="mountain-layer layer-near" id="layerNear">
+      <svg viewBox="0 0 1440 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,300 L0,250 Q100,200 200,230 Q300,170 400,210 Q480,160 560,200 Q650,150 750,185 Q850,140 950,175 Q1050,145 1150,170 Q1250,145 1340,165 L1440,175 L1440,300 Z" fill="#2a5c2a"/>
+      </svg>
+    </div>
+
+    <!-- Foreground treeline -->
+    <div class="treeline" id="treeline">
+      <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Dense pine tree silhouettes -->
+        <g fill="#1a3d1a">
+          <polygon points="40,200 60,140 80,200"/>
+          <polygon points="55,200 75,120 95,200"/>
+          <polygon points="80,200 100,130 120,200"/>
+          <polygon points="110,200 135,105 160,200"/>
+          <polygon points="140,200 162,125 184,200"/>
+          <polygon points="170,200 192,115 214,200"/>
+          <polygon points="200,200 225,100 250,200"/>
+          <polygon points="235,200 258,120 281,200"/>
+          <polygon points="265,200 288,110 311,200"/>
+          <polygon points="300,200 322,95 344,200"/>
+          <polygon points="330,200 355,115 380,200"/>
+          <polygon points="360,200 385,105 410,200"/>
+          <polygon points="395,200 418,90 441,200"/>
+          <polygon points="425,200 450,110 475,200"/>
+          <polygon points="460,200 484,100 508,200"/>
+          <polygon points="490,200 515,88 540,200"/>
+          <polygon points="525,200 548,108 571,200"/>
+          <polygon points="555,200 580,98 605,200"/>
+          <polygon points="590,200 613,112 636,200"/>
+          <polygon points="622,200 645,92 668,200"/>
+          <polygon points="655,200 678,105 701,200"/>
+          <polygon points="688,200 712,85 736,200"/>
+          <polygon points="720,200 744,100 768,200"/>
+          <polygon points="752,200 776,115 800,200"/>
+          <polygon points="785,200 808,90 831,200"/>
+          <polygon points="818,200 841,108 864,200"/>
+          <polygon points="850,200 875,95 900,200"/>
+          <polygon points="882,200 907,110 932,200"/>
+          <polygon points="915,200 940,88 965,200"/>
+          <polygon points="948,200 972,102 996,200"/>
+          <polygon points="980,200 1005,92 1030,200"/>
+          <polygon points="1012,200 1037,108 1062,200"/>
+          <polygon points="1045,200 1070,85 1095,200"/>
+          <polygon points="1078,200 1102,100 1126,200"/>
+          <polygon points="1110,200 1135,112 1160,200"/>
+          <polygon points="1143,200 1167,90 1191,200"/>
+          <polygon points="1176,200 1200,105 1224,200"/>
+          <polygon points="1208,200 1233,88 1258,200"/>
+          <polygon points="1241,200 1265,108 1289,200"/>
+          <polygon points="1273,200 1298,95 1323,200"/>
+          <polygon points="1306,200 1330,110 1354,200"/>
+          <polygon points="1338,200 1363,88 1388,200"/>
+          <polygon points="1370,200 1395,102 1420,200"/>
+          <polygon points="1400,200 1425,92 1450,200"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Ground mist -->
+    <div class="mist" id="mist"></div>
+
+    <!-- Leaves -->
+    <canvas class="leaves-canvas" id="leavesCanvas"></canvas>
+  </div>
+
+  <!-- Main Content -->
+  <main class="content">
+    <div class="content-inner">
+
+      <div class="badge">Azure Static Web Apps</div>
+
+      <h1 class="headline">
+        Deployed into<br>
+        <em>the open sky</em>
+      </h1>
+
+      <p class="subtext">
+        This page was automatically deployed from GitHub to Azure.<br>
+        Breathe easy — your static web app is live.
+      </p>
+
+      <div class="actions">
+        <button id="alertBtn" class="btn-verify">
+          <span class="btn-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </span>
+          Verify JavaScript
+        </button>
+      </div>
+
+      <!-- Status cards -->
+      <div class="status-grid">
+        <div class="status-card">
+          <div class="status-dot green"></div>
+          <span class="status-label">Deployment</span>
+          <span class="status-value">Successful</span>
+        </div>
+        <div class="status-card">
+          <div class="status-dot green"></div>
+          <span class="status-label">CDN</span>
+          <span class="status-value">Active</span>
+        </div>
+        <div class="status-card">
+          <div class="status-dot green"></div>
+          <span class="status-label">HTTPS</span>
+          <span class="status-value">Secured</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Verification Modal -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" id="modal">
+      <div class="modal-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h3>JavaScript is running</h3>
+      <p>Your <code>script.js</code> file is actively loaded and executing in the client browser on Azure.</p>
+      <button class="modal-close" id="modalClose">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
